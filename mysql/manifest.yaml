@@ -45,4 +45,21 @@ spec:
       - name: mysql
         persistentVolumeClaim:
           claimName: mysql
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mysql
+  namespace: expense
+spec:
+  clusterIP: None # This makes it a headless service, which is required for StatefulSets to manage their own network identities
+  selector:
+    component: mysql 
+    project: expense
+    tier: database
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+
  
