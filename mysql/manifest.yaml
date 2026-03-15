@@ -61,15 +61,15 @@ spec:
         - name: mysql
           mountPath: /var/lib/mysql
 # Pod template does not support volumeClaimTemplates, so we need to define the PVC separately and reference it here
-volumeClaimTemplates:
-- metadata:
-    name: mysql
-  spec:
-    storageClassName: expense-ebs-sc # Reference the custom StorageClass
-    accessModes: ["ReadWriteOnce"]
-    resources:
-      requests:
-      storage: 1Gi
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql
+    spec:
+      storageClassName: expense-ebs-sc # Reference the custom StorageClass
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi
       # nodeSelector:
       #   topology.kubernetes.io/zone: us-east-1d
       # volumes:
